@@ -6,7 +6,8 @@ Modelling a lightbulb can be fun and a good opportunity to reflect about heurist
 ![image](docs/intro/lightbulb.png)
 
 TODO make slides
-- don't let your unit tests do the job of your compiler
+- don't let your unit tests do the job of your compiler - don't let the human do the job of the machine
 - clarity over brevity
 - design with change in mind
 - usability over reusability
+- tell don't ask
