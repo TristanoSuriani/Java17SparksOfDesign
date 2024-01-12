@@ -1,0 +1,24 @@
+@startuml
+state NonFunctioning
+state Functioning {
+  state Off
+  state On
+  state OnButFlickering
+  state Disconnected
+}
+
+[*] -down-> NonFunctioning : acquired and\n non-functioning detected
+[*] -down-> Disconnected : acquired
+Functioning -down-> NonFunctioning : broken
+
+Disconnected -down-> Off : plugged in and\nno stream detected
+Disconnected -down-> On : plugged in and\nstream detected
+
+On -down-> Off : turned off
+On -down-> OnButFlickering : flickering initiated
+
+Off -down-> On : turned on
+
+OnButFlickering -down-> Off : turned off
+OnButFlickering -down-> On : flickering terminated
+@enduml
