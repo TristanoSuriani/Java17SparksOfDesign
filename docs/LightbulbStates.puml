@@ -7,7 +7,7 @@ state Functioning {
   state Disconnected
 }
 
-[*] -down-> NonFunctioning : acquired and\n non-functioning detected
+[*] -down-> NonFunctioning : acquired and\nnon-function detected
 [*] -down-> Disconnected : acquired
 Functioning -down-> NonFunctioning : broken
 
