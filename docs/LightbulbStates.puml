@@ -1,4 +1,5 @@
 @startuml
+state NoLightbulb
 state NonFunctioning
 state Functioning {
   state Off
@@ -7,8 +8,9 @@ state Functioning {
   state Disconnected
 }
 
-[*] -down-> NonFunctioning : acquired and\nnon-function detected
-[*] -down-> Disconnected : acquired
+[*] -down-> NoLightbulb
+NoLightbulb -down-> NonFunctioning : acquired and\nnon-function detected
+NoLightbulb -down-> Disconnected : acquired
 Functioning -down-> NonFunctioning : broken
 
 Disconnected -down-> Off : plugged in and\nno stream detected

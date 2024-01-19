@@ -6,89 +6,89 @@ public sealed interface Match {
 
     record NoMatch() implements Match {}
 
-    record NewMatch(MatchID matchID,
-                    LocalDateTime dateTime,
-                    MatchName name,
-                    HomeTeamID homeTeamID,
-                    AwayTeamID awayTeamID) implements Match {
+    record New(MatchID matchID,
+               LocalDateTime dateTime,
+               MatchName name,
+               HomeTeamID homeTeamID,
+               AwayTeamID awayTeamID) implements Match {
 
-        public NewMatch {
+        public New {
             Guard.areNotNull(matchID, dateTime, name, homeTeamID, awayTeamID);
         }
 
-        public MatchCancelled cancel() {
-            return new MatchCancelled(matchID, dateTime, name, homeTeamID, awayTeamID);
+        public Cancelled cancel() {
+            return new Cancelled(matchID, dateTime, name, homeTeamID, awayTeamID);
         }
 
-        public MatchInProgress setInProgress() {
-            return new MatchInProgress(matchID, dateTime, name, homeTeamID, awayTeamID, new Score());
+        public InProgress setInProgress() {
+            return new InProgress(matchID, dateTime, name, homeTeamID, awayTeamID, new Score());
         }
     }
 
-    record MatchCancelled(MatchID matchID,
-                          LocalDateTime dateTime,
-                          MatchName name,
-                          HomeTeamID homeTeamID,
-                          AwayTeamID awayTeamID) implements Match {
+    record Cancelled(MatchID matchID,
+                     LocalDateTime dateTime,
+                     MatchName name,
+                     HomeTeamID homeTeamID,
+                     AwayTeamID awayTeamID) implements Match {
 
-        public MatchCancelled {
+        public Cancelled {
             Guard.areNotNull(matchID, dateTime, name, homeTeamID, awayTeamID);
         }
 
-        public NewMatch revertToNewMatch() {
-            return new NewMatch(matchID, dateTime, name, homeTeamID, awayTeamID);
+        public New revertToNewMatch() {
+            return new New(matchID, dateTime, name, homeTeamID, awayTeamID);
         }
     }
 
-    record MatchInProgress(MatchID matchID,
-                           LocalDateTime dateTime,
-                           MatchName name,
-                           HomeTeamID homeTeamID,
-                           AwayTeamID awayTeamID,
-                           Score score) implements Match {
+    record InProgress(MatchID matchID,
+                      LocalDateTime dateTime,
+                      MatchName name,
+                      HomeTeamID homeTeamID,
+                      AwayTeamID awayTeamID,
+                      Score score) implements Match {
 
-        public MatchInProgress {
+        public InProgress {
             Guard.areNotNull(matchID, dateTime, name, homeTeamID, awayTeamID, score);
         }
 
-        public MatchSuspended suspend() {
-            return new MatchSuspended(matchID, dateTime, name, homeTeamID, awayTeamID, score);
+        public Suspended suspend() {
+            return new Suspended(matchID, dateTime, name, homeTeamID, awayTeamID, score);
         }
 
-        public MatchTerminated terminate() {
-            return new MatchTerminated(matchID, dateTime, name, homeTeamID, awayTeamID, score);
+        public Terminated terminate() {
+            return new Terminated(matchID, dateTime, name, homeTeamID, awayTeamID, score);
         }
     }
 
-    record MatchSuspended(MatchID matchID,
-                          LocalDateTime dateTime,
-                          MatchName name,
-                          HomeTeamID homeTeamID,
-                          AwayTeamID awayTeamID,
-                          Score score) implements Match {
+    record Suspended(MatchID matchID,
+                     LocalDateTime dateTime,
+                     MatchName name,
+                     HomeTeamID homeTeamID,
+                     AwayTeamID awayTeamID,
+                     Score score) implements Match {
 
-        public MatchSuspended {
+        public Suspended {
             Guard.areNotNull(matchID, dateTime, name, homeTeamID, awayTeamID, score);
         }
 
-        public MatchInProgress revertToMatchInProgress() {
-            return new MatchInProgress(matchID, dateTime, name, homeTeamID, awayTeamID, score);
+        public InProgress revertToMatchInProgress() {
+            return new InProgress(matchID, dateTime, name, homeTeamID, awayTeamID, score);
         }
     }
 
-    record MatchTerminated(MatchID matchID,
-                           LocalDateTime dateTime,
-                           MatchName name,
-                           HomeTeamID homeTeamID,
-                           AwayTeamID awayTeamID,
-                           Score score) implements Match {
+    record Terminated(MatchID matchID,
+                      LocalDateTime dateTime,
+                      MatchName name,
+                      HomeTeamID homeTeamID,
+                      AwayTeamID awayTeamID,
+                      Score score) implements Match {
 
-        public MatchTerminated {
+        public Terminated {
             Guard.areNotNull(matchID, dateTime, name, homeTeamID, awayTeamID, score);
         }
 
-        public MatchInProgress revertToMatchInProgress() {
-            return new MatchInProgress(matchID, dateTime, name, homeTeamID, awayTeamID, score);
+        public InProgress revertToMatchInProgress() {
+            return new InProgress(matchID, dateTime, name, homeTeamID, awayTeamID, score);
         }
     }
 }
