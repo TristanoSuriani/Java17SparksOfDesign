@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MatchesTest {
+class MatchTypeTest {
     @Test
     void exampleUsage() {
         Match match = new Match.New(
@@ -19,16 +19,16 @@ class MatchesTest {
             )
             .setInProgress();
 
-        assertTrue(Matches.of(match).is(Match.InProgress.class));
-        assertDoesNotThrow(() -> Matches.of(match).as(Match.InProgress.class));
-        assertThrows(ClassCastException.class, () -> Matches.of(match).as(Match.Terminated.class));
+        assertTrue(MatchType.of(match).is(Match.InProgress.class));
+        assertDoesNotThrow(() -> MatchType.of(match).as(Match.InProgress.class));
+        assertThrows(ClassCastException.class, () -> MatchType.of(match).as(Match.Terminated.class));
 
-        var maybeMatchInProgress = Matches.of(match)
+        var maybeMatchInProgress = MatchType.of(match)
                 .possiblyAs(Match.InProgress.class);
 
         assertTrue(maybeMatchInProgress.isPresent());
 
-        var maybeMatchTerminated = Matches.of(match)
+        var maybeMatchTerminated = MatchType.of(match)
                 .possiblyAs(Match.Terminated.class);
 
         assertTrue(maybeMatchTerminated.isEmpty());
@@ -38,7 +38,7 @@ class MatchesTest {
     void exampleUsage2() {
         var match = getAMatch();
 
-        Matches.of(match)
+        MatchType.of(match)
                 .possiblyAs(Match.InProgress.class)
                 .ifPresentOrElse(
                         (m) -> System.out.println("match is in progress"),

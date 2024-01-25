@@ -28,6 +28,6 @@ class MatchRepositoryStubTest {
         assertFalse(matchRepository.findAll().isEmpty());
 
         var savedMatch = matchRepository.findById(match.matchID());
-        assertTrue(Matches.of(match).is(Match.Suspended.class));
+        assertTrue(MatchType.of(match).isSuspended());
     }
 }

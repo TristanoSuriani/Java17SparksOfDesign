@@ -2,7 +2,7 @@ package nl.suriani.java17.sparks.of.design.match.infra;
 
 import nl.suriani.java17.sparks.of.design.match.domain.Match;
 import nl.suriani.java17.sparks.of.design.match.domain.MatchID;
-import nl.suriani.java17.sparks.of.design.match.domain.Matches;
+import nl.suriani.java17.sparks.of.design.match.domain.MatchType;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class MatchRepositoryStub implements MatchRepository {
 
     @Override
     public void save(Match match) {
-        if (Matches.of(match).is(Match.NoMatch.class)) {
+        if (MatchType.of(match).is(Match.NoMatch.class)) {
             throw new IllegalStateException("Cannot save a match that doesn't exist.");
         }
 

@@ -1,7 +1,7 @@
 package nl.suriani.java17.sparks.of.design.match.infra;
 
 import nl.suriani.java17.sparks.of.design.match.domain.Match;
-import nl.suriani.java17.sparks.of.design.match.domain.Matches;
+import nl.suriani.java17.sparks.of.design.match.domain.MatchType;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -29,28 +29,28 @@ public class MatchToMatchEntityFunction implements Function<Match, MatchEntity> 
     }
 
     private static Optional<Match.New> whenNew(Match match) {
-        return Matches.of(match)
-                .possiblyAs(Match.New.class);
+        return MatchType.of(match)
+                .possiblyAsNew();
     }
 
     private static Optional<Match.InProgress> whenInProgress(Match match) {
-        return Matches.of(match)
-                .possiblyAs(Match.InProgress.class);
+        return MatchType.of(match)
+                .possiblyAsInProgress();
     }
 
     private static Optional<Match.Cancelled> whenCancelled(Match match) {
-        return Matches.of(match)
-                .possiblyAs(Match.Cancelled.class);
+        return MatchType.of(match)
+                .possiblyAsCancelled();
     }
 
     private static Optional<Match.Suspended> whenSuspended(Match match) {
-        return Matches.of(match)
-                .possiblyAs(Match.Suspended.class);
+        return MatchType.of(match)
+                .possiblyAsSuspended();
     }
 
     private static Optional<Match.Terminated> whenTerminated(Match match) {
-        return Matches.of(match)
-                .possiblyAs(Match.Terminated.class);
+        return MatchType.of(match)
+                .possiblyAsTerminated();
     }
 
     private MatchEntity fromNewMatch(Match.New match) {
