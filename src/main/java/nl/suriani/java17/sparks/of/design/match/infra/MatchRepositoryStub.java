@@ -6,7 +6,6 @@ import nl.suriani.java17.sparks.of.design.match.domain.MatchType;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -25,11 +24,12 @@ public class MatchRepositoryStub implements MatchRepository {
     }
 
     @Override
-    public Optional<Match> findById(MatchID id) {
+    public Match findById(MatchID id) {
         return matchDb.values().stream()
                 .filter(entity -> entity.getUuid().equals(id.value()))
                 .map(matchEntityToMatch)
-                .findAny();
+                .findAny()
+                .orElse(new Match.NoMatch());
     }
 
     @Override
