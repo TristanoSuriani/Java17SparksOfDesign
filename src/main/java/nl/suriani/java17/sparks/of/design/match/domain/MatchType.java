@@ -38,7 +38,7 @@ public class MatchType {
         }
 
         public <T extends Match> boolean is(Class<T> matchClass) {
-            return matchClass.isAssignableFrom(match().getClass());
+            return matchClass.isInstance(match());
         }
 
         public Match.NoMatch asNoMatch() {

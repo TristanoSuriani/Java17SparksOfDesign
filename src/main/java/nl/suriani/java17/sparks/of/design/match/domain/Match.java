@@ -4,7 +4,20 @@ import java.time.LocalDateTime;
 
 public sealed interface Match {
 
-    record NoMatch() implements Match {}
+    record NoMatch() implements Match {
+        public New newMatch(MatchID matchID,
+                        LocalDateTime dateTime,
+                        MatchName name,
+                        HomeTeamID homeTeamID,
+                        AwayTeamID awayTeamID) {
+
+            return new New(matchID,
+                    dateTime,
+                    name,
+                    homeTeamID,
+                    awayTeamID);
+        }
+    }
 
     record New(MatchID matchID,
                LocalDateTime dateTime,
