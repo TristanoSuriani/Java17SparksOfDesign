@@ -9,9 +9,22 @@ public class MatchType {
     }
 
     public record MatchTypeInspector(Match match) {
-        public Match match() {
-            return match;
+
+        public <T extends Match> T as(Class<T> matchClass) {
+            return matchClass.cast(match());
         }
+
+        public <T extends Match> boolean is(Class<T> matchClass) {
+            return matchClass.isInstance(match());
+        }
+
+        public <T extends Match> Optional<T> possiblyAs(Class<T> matchClass) {
+            return Optional.of(matchClass)
+                    .filter(this::is)
+                    .map(this::as);
+        }
+
+        // syntax sugar
 
         public boolean isNoMatch() {
             return is(Match.NoMatch.class);
@@ -35,10 +48,6 @@ public class MatchType {
 
         public boolean isTerminated() {
             return is(Match.Terminated.class);
-        }
-
-        public <T extends Match> boolean is(Class<T> matchClass) {
-            return matchClass.isInstance(match());
         }
 
         public Match.NoMatch asNoMatch() {
@@ -65,10 +74,6 @@ public class MatchType {
             return as(Match.Terminated.class);
         }
 
-        public <T extends Match> T as(Class<T> matchClass) {
-            return matchClass.cast(match());
-        }
-
         public Optional<Match.NoMatch> possiblyAsNoMatch() {
             return possiblyAs(Match.NoMatch.class);
         }
@@ -91,12 +96,6 @@ public class MatchType {
 
         public Optional<Match.Terminated> possiblyAsTerminated() {
             return possiblyAs(Match.Terminated.class);
-        }
-
-        public <T extends Match> Optional<T> possiblyAs(Class<T> matchClass) {
-            return Optional.of(matchClass)
-                    .filter(this::is)
-                    .map(this::as);
         }
     }
 }
