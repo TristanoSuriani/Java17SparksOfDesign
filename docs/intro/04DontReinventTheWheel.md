@@ -1,3 +1,3 @@
-[Home](../../Readme.md) | [< Prev](02Dry.md) | [Next >](../../Readme.md)
+[Home](../../Readme.md) | [< Prev](03ShorterCodeHasLessBugs.md) | [Next >](05Java17.md)
 
 ![image](dontReinvent.png)
