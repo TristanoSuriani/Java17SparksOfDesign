@@ -1,0 +1,2 @@
+:pdf-page-layout: landscape
+= CTRL + ALT + DESIGN: Java 21 Spark of design - Lightbulb states made brilliant
