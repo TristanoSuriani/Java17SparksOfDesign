@@ -1,8 +1,6 @@
-package nl.suriani.java17.sparks.of.design.lightbulb;
+package nl.suriani.java17.sparks.of.design.inventory;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LightbulbTest {
     @Test

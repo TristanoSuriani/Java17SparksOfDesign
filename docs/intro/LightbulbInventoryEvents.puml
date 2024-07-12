@@ -1,0 +1,62 @@
+@startuml
+
+!define COMMAND #Orange
+!define STATE #LightBlue
+!define EVENT #LightGreen
+
+rectangle command {
+    rectangle AddItemWithStock COMMAND
+    rectangle AddItemWithoutStock COMMAND
+    rectangle IncreaseStock COMMAND
+    rectangle DecreaseStock COMMAND
+    rectangle RemoveItem as RemoveItem1 COMMAND
+}
+
+rectangle event {
+    rectangle ItemAddedWithStock EVENT
+    rectangle ItemAddedWithoutStock EVENT
+    rectangle StockIncreased EVENT
+    rectangle StockDecreased EVENT
+    rectangle ItemRemoved EVENT
+}
+
+rectangle "initial state" {
+    rectangle NoItem as NoItemIS1 STATE
+    rectangle InStock as InStockIS1 STATE
+    rectangle OutOfStock as OutOfStockIS1 STATE
+}
+
+rectangle "new state" {
+    rectangle Removed as RemovedNS1 STATE
+    rectangle InStock as InStockNS1 STATE
+    rectangle InStock as InStockNS2 STATE
+    rectangle InStock as InStockNS3 STATE
+    rectangle OutOfStock as OutOfStockNS1 STATE
+    rectangle OutOfStock as OutOfStockNS2 STATE
+}
+
+NoItemIS1 .down--> AddItemWithStock
+AddItemWithStock -down--> ItemAddedWithStock
+ItemAddedWithStock -down--> InStockNS1
+
+NoItemIS1 .down-> AddItemWithoutStock
+AddItemWithoutStock -down-> ItemAddedWithoutStock
+ItemAddedWithoutStock -down-> OutOfStockNS1
+
+InStockIS1 .down-> IncreaseStock
+IncreaseStock -down-> StockIncreased
+StockIncreased -down-> InStockNS2
+
+InStockIS1 .down-> DecreaseStock
+DecreaseStock -down-> StockDecreased
+StockDecreased -down-> InStockNS3
+StockDecreased -down-> OutOfStockNS2
+
+InStockIS1 .down-> RemoveItem1
+OutOfStockIS1 .down-> RemoveItem1
+RemoveItem1 -down-> ItemRemoved
+ItemRemoved -down-> RemovedNS1
+
+OutOfStockIS1 .down-> IncreaseStock
+
+@enduml

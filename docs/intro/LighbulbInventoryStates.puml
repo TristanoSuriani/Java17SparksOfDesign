@@ -1,0 +1,18 @@
+@startuml
+
+state NoItem
+state OutOfStock
+state InStock
+state Removed
+
+NoItem -down-> OutOfStock : add item without stock
+NoItem -down-> InStock : add item with stock
+InStock -down-> OutOfStock : decrease stock
+InStock -down-> Removed : remove item
+OutOfStock -down-> Removed : remove item
+OutOfStock -up-> InStock : increase stock
+
+InStock -down-> InStock : increase stock |\ndecrease stock
+
+
+@enduml
