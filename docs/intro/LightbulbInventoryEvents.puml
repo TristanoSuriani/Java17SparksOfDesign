@@ -9,7 +9,7 @@ rectangle command {
     rectangle AddItemWithoutStock COMMAND
     rectangle IncreaseStock COMMAND
     rectangle DecreaseStock COMMAND
-    rectangle RemoveItem as RemoveItem1 COMMAND
+    rectangle RemoveItem COMMAND
 }
 
 rectangle event {
@@ -35,28 +35,32 @@ rectangle "new state" {
     rectangle OutOfStock as OutOfStockNS2 STATE
 }
 
+'AddItemWithStock
 NoItemIS1 .down--> AddItemWithStock
 AddItemWithStock -down--> ItemAddedWithStock
 ItemAddedWithStock -down--> InStockNS1
 
+'AddItemWithoutStock
 NoItemIS1 .down-> AddItemWithoutStock
 AddItemWithoutStock -down-> ItemAddedWithoutStock
 ItemAddedWithoutStock -down-> OutOfStockNS1
 
+'IncreaseStock
 InStockIS1 .down-> IncreaseStock
+OutOfStockIS1 .down-> IncreaseStock
 IncreaseStock -down-> StockIncreased
 StockIncreased -down-> InStockNS2
 
+'DecreaseStock
 InStockIS1 .down-> DecreaseStock
 DecreaseStock -down-> StockDecreased
 StockDecreased -down-> InStockNS3
 StockDecreased -down-> OutOfStockNS2
 
-InStockIS1 .down-> RemoveItem1
-OutOfStockIS1 .down-> RemoveItem1
-RemoveItem1 -down-> ItemRemoved
+'RemoveItem
+InStockIS1 .down-> RemoveItem
+OutOfStockIS1 .down-> RemoveItem
+RemoveItem -down-> ItemRemoved
 ItemRemoved -down-> RemovedNS1
-
-OutOfStockIS1 .down-> IncreaseStock
 
 @enduml
