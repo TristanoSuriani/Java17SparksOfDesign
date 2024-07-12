@@ -1,26 +1,41 @@
 @startuml
 state NoLightbulb
-state NonFunctioning
-state Functioning {
-  state Off
-  state On
-  state OnButFlickering
-  state Disconnected
+state Acquired {
+    state NotConnected
+    state Connected {
+        state Off
+        state On
+        state Flickering
+    }
+
+    state NonFunctioning
 }
 
+state Disposed
+
+
+
+
+
+
 [*] -down-> NoLightbulb
-NoLightbulb -down-> NonFunctioning : acquired and\nnon-function detected
-NoLightbulb -down-> Disconnected : acquired
-Functioning -down-> NonFunctioning : broken
+NoLightbulb -down-> NonFunctioning : acquired in broken state
+NoLightbulb -down-> NotConnected : acquired
 
-Disconnected -down-> Off : plugged in and\nno stream detected
-Disconnected -down-> On : plugged in and\nstream detected
+NotConnected -down-> Off : plugged in and\nno stream detected
+NotConnected -down-> On : plugged in and\nstream detected
+NotConnected -left-> NonFunctioning : broken
+Connected -up-> NonFunctioning : broken
+Connected -down-> NotConnected : disconnected
 
-On -down-> Off : turned off
-On -down-> OnButFlickering : flickering initiated
+On -down--> Off : turned off
+On -left-> Flickering : flickering initiated
 
 Off -down-> On : turned on
 
-OnButFlickering -down-> Off : turned off
-OnButFlickering -down-> On : flickering terminated
+Flickering -down-> Off : turned off
+Flickering -right-> On : flickering terminated
+
+Acquired -right----> Disposed : disposed
+
 @enduml
