@@ -8,4 +8,8 @@ public record ItemId(UUID value) {
     public ItemId {
         Guards.isNotNull(value);
     }
+
+    public ItemId() {
+        this(UUID.randomUUID());
+    }
 }
