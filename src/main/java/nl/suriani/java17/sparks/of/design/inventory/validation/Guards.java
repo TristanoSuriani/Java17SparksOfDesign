@@ -8,7 +8,7 @@ public interface Guards {
     }
 
     static void isBiggerThan0(int i) {
-        if (i < 0) {
+        if (i <= 0) {
             throw new ValueOutOfRangeException();
         }
     }
