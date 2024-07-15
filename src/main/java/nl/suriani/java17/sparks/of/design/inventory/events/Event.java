@@ -6,7 +6,6 @@ import nl.suriani.java17.sparks.of.design.inventory.entities.StockAmount;
 import nl.suriani.java17.sparks.of.design.inventory.validation.Guards;
 
 import java.time.LocalDateTime;
-import java.util.function.Function;
 
 public sealed interface Event {
     ItemId id();
@@ -116,12 +115,32 @@ public sealed interface Event {
         }
     }
 
+    record PutOutOfStock(ItemId id, LocalDateTime dateTime) implements Event {
+        public PutOutOfStock {
+            Guards.isNotNull(id);
+            Guards.isNotNull(dateTime);
+        }
+
+        public PutOutOfStock() {
+            this(new ItemId(), LocalDateTime.now());
+        }
+
+        public Type type() {
+            return Type.PUT_OUT_OF_STOCK;
+        }
+
+        public Version version() {
+            return new Version();
+        }
+    }
+
     enum Type {
         ITEM_ADDED_WITHOUT_STOCK,
         ITEM_ADDED_WITH_STOCK,
         ITEM_REMOVED,
         STOCK_INCREASED,
-        STOCK_DECREASED;
+        STOCK_DECREASED,
+        PUT_OUT_OF_STOCK;
     }
 
     default <T extends Event> T as(Class<T> clazz) {

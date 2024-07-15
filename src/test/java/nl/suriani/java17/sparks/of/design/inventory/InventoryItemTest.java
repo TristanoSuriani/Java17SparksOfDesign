@@ -19,7 +19,10 @@ class InventoryItemTest {
 
         var events = List.<Event>of(
                 new Event.ItemAddedWithStock(id, LocalDateTime.now(), info, new StockAmount(100)),
-                new Event.StockDecreased(new StockAmount(99))
+                new Event.StockDecreased(id, LocalDateTime.now(), new StockAmount(99)),
+                new Event.PutOutOfStock(id, LocalDateTime.now()),
+                new Event.StockIncreased(id, LocalDateTime.now(), new StockAmount(100)),
+                new Event.ItemRemoved()
         );
 
         var state = InventoryItem.project(events);

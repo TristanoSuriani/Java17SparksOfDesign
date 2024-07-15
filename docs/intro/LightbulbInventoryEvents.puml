@@ -18,6 +18,7 @@ rectangle event {
     rectangle StockIncreased EVENT
     rectangle StockDecreased EVENT
     rectangle ItemRemoved EVENT
+    rectangle PutOutOfStock EVENT
 }
 
 rectangle "initial state" {
@@ -54,8 +55,9 @@ StockIncreased -down-> InStockNS2
 'DecreaseStock
 InStockIS1 .down-> DecreaseStock
 DecreaseStock -down-> StockDecreased
+DecreaseStock -down-> PutOutOfStock
 StockDecreased -down-> InStockNS3
-StockDecreased -down-> OutOfStockNS2
+PutOutOfStock -down-> OutOfStockNS2
 
 'RemoveItem
 InStockIS1 .down-> RemoveItem

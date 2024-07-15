@@ -35,6 +35,7 @@ public record InStock(ItemId id, ItemInfo info, StockAmount amount) implements I
             case Event.ItemRemoved itemRemoved -> remove();
             case Event.StockDecreased stockDecreased -> decreaseStockAmount(stockDecreased.amount());
             case Event.StockIncreased stockIncreased -> increaseStockAmount(stockIncreased.amount());
+            case Event.PutOutOfStock putOutOfStock -> outOfStock();
             default -> throw new IllegalStateException("Unexpected event type: " + event.type());
         };
     }
