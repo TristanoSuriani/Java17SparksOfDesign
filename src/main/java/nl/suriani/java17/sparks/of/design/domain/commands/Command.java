@@ -1,10 +1,9 @@
-package nl.suriani.java17.sparks.of.design.inventory.commands;
+package nl.suriani.java17.sparks.of.design.domain.commands;
 
-import nl.suriani.java17.sparks.of.design.inventory.entities.ItemId;
-import nl.suriani.java17.sparks.of.design.inventory.entities.ItemInfo;
-import nl.suriani.java17.sparks.of.design.inventory.entities.StockAmount;
-import nl.suriani.java17.sparks.of.design.inventory.events.Event;
-import nl.suriani.java17.sparks.of.design.inventory.validation.Guards;
+import nl.suriani.java17.sparks.of.design.domain.entities.ItemId;
+import nl.suriani.java17.sparks.of.design.domain.entities.ItemInfo;
+import nl.suriani.java17.sparks.of.design.domain.entities.StockAmount;
+import nl.suriani.java17.sparks.of.design.domain.validation.Guards;
 
 public sealed interface Command {
 

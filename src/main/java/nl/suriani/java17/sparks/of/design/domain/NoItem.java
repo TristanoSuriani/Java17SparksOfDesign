@@ -1,6 +1,6 @@
-package nl.suriani.java17.sparks.of.design.inventory;
+package nl.suriani.java17.sparks.of.design.domain;
 
-import nl.suriani.java17.sparks.of.design.inventory.events.Event;
+import nl.suriani.java17.sparks.of.design.domain.events.Event;
 
 public record NoItem() implements InventoryItem {
     @Override

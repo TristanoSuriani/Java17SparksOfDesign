@@ -1,6 +1,6 @@
-package nl.suriani.java17.sparks.of.design.inventory.events;
+package nl.suriani.java17.sparks.of.design.domain.events;
 
-import nl.suriani.java17.sparks.of.design.inventory.validation.ValueOutOfRangeException;
+import nl.suriani.java17.sparks.of.design.domain.validation.ValueOutOfRangeException;
 
 public record Version(int value) {
     public Version {

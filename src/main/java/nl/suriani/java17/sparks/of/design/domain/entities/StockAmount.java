@@ -1,6 +1,6 @@
-package nl.suriani.java17.sparks.of.design.inventory.entities;
+package nl.suriani.java17.sparks.of.design.domain.entities;
 
-import nl.suriani.java17.sparks.of.design.inventory.validation.Guards;
+import nl.suriani.java17.sparks.of.design.domain.validation.Guards;
 
 public record StockAmount(int value) {
     public StockAmount {

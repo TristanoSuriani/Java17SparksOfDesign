@@ -1,13 +1,11 @@
-package nl.suriani.java17.sparks.of.design.inventory;
+package nl.suriani.java17.sparks.of.design.domain;
 
-import nl.suriani.java17.sparks.of.design.inventory.entities.*;
-import nl.suriani.java17.sparks.of.design.inventory.events.Event;
+import nl.suriani.java17.sparks.of.design.domain.entities.*;
+import nl.suriani.java17.sparks.of.design.domain.events.Event;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class InventoryItemTest {
     @Test
