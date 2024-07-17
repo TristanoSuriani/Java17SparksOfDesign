@@ -15,6 +15,14 @@ public sealed interface InventoryItem permits InStock, NoItem, OutOfStock, Remov
         return state;
     }
 
+    default InventoryItem evolve(List<Event> events) {
+        var result = this;
+        for (Event event : events) {
+            result = result.evolve(event);
+        }
+        return result;
+    }
+
     default <T extends InventoryItem> boolean is(Class<T> clazz) {
         return clazz.isAssignableFrom(getClass());
     }

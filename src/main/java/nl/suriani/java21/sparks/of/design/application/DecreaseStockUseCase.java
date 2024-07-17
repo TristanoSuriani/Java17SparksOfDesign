@@ -17,16 +17,20 @@ public class DecreaseStockUseCase {
     }
 
     public void decreaseStock(Command.DecreaseStock command) {
+        // fetch events
+        // project state
+        // decide new events
+        // evolve state
+        // publish events
+        // save state
+
         var events = eventStore.findById(command.id().value().toString());
         var state = InventoryItem.project(events);
 
-        var nextEvents = decider.apply(command, state);
+        var newEvents = decider.apply(command, state);
+        state = state.evolve(newEvents);
 
-        for (var nextEvent : nextEvents) {
-            state = state.evolve(nextEvent);
-        }
-
-        nextEvents.forEach(eventStore::publish);
+        newEvents.forEach(eventStore::publish);
         repository.save(state);
     }
 }
