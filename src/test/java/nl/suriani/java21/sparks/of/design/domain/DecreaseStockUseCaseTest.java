@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DecreaseStockUseCaseTest {
     private DecreaseStockUseCase decreaseStockUseCase;
 
-    private static final ItemInfo info = new ItemInfo(new Brand("Philips"), new ItemName("Lighbulb plus"),
+    private static final ItemInfo info = new ItemInfo(new Brand("Philips"), new ItemName("Lightbulb plus"),
                 new ItemCategory("Lightbulbs"), new ItemSubcategory("Electric equipment"),
                 new ItemDescription("A lightbulb."));
 
