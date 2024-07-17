@@ -26,7 +26,7 @@ public class DecreaseStockUseCase {
             state = state.evolve(nextEvent);
         }
 
-        nextEvents.forEach(eventStore::save);
+        nextEvents.forEach(eventStore::publish);
         repository.save(state);
     }
 }

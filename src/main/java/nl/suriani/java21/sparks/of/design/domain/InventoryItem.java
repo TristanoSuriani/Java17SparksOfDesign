@@ -14,4 +14,12 @@ public sealed interface InventoryItem permits InStock, NoItem, OutOfStock, Remov
         }
         return state;
     }
+
+    default <T extends InventoryItem> boolean is(Class<T> clazz) {
+        return clazz.isAssignableFrom(getClass());
+    }
+
+    default <T extends InventoryItem> T as(Class<T> clazz) {
+        return clazz.cast(this);
+    }
 }

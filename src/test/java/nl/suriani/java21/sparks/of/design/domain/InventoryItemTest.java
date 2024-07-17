@@ -1,6 +1,5 @@
 package nl.suriani.java21.sparks.of.design.domain;
 
-import nl.suriani.java17.sparks.of.design.domain.entities.*;
 import nl.suriani.java21.sparks.of.design.domain.events.Event;
 import nl.suriani.java21.sparks.of.design.domain.entities.*;
 import org.junit.jupiter.api.Test;

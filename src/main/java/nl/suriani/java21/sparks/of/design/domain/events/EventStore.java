@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface EventStore<E> {
     List<E> findById(String aggregateId);
-    void save(E event);
+    void publish(E event);
 }
