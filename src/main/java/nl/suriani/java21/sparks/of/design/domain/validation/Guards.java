@@ -1,0 +1,15 @@
+package nl.suriani.java21.sparks.of.design.domain.validation;
+
+public interface Guards {
+    static void isNotNull(Object o) {
+        if (o == null) {
+            throw new RequiredFieldIsMissingException();
+        }
+    }
+
+    static void isBiggerThan0(int i) {
+        if (i <= 0) {
+            throw new ValueOutOfRangeException();
+        }
+    }
+}
