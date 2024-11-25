@@ -17,7 +17,7 @@ public class DecreaseStockDecider implements Decide<Command.DecreaseStock, Inven
             case InStock inStock -> {
                 var difference = inStock.amount().value() - command.amount().value();
                 if (difference < 0) {
-                    throw new IllegalArgumentException("The stock is insufficient to fullfill the order.");
+                    throw new IllegalArgumentException("The stock is insufficient object fullfill the order.");
                 }
 
                 if (difference == 0) {

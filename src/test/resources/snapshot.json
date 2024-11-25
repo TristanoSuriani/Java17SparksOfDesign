@@ -1,0 +1,19 @@
+{
+  "name": "Tristano",
+  "lastname": "Suriani",
+  "age": 42,
+  "children": [
+    {
+      "name": "Giulia",
+      "lastname": "Suriani",
+      "age": 7,
+      "children": []
+    },
+    {
+      "name": "Laura",
+      "lastname": "Suriani",
+      "age": 5,
+      "children": []
+    }
+  ]
+}
